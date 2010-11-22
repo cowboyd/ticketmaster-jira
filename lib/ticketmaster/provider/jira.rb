@@ -1,3 +1,4 @@
+require 'jira4r'
 module TicketMaster::Provider
   # This is the Jira Provider for ticketmaster
   module Jira
@@ -14,8 +15,8 @@ module TicketMaster::Provider
     # parameters to access the API
     def authorize(auth = {})
       @authentication ||= TicketMaster::Authenticator.new(auth)
-      @jira = Jira4r::JiraTool.new(2,auth[:url])
-      @jira.login(auth[:username], auth[:password])
+      $jira = Jira4R::JiraTool.new(2,@authentication.url)
+      $jira.login(@authentication.username, @authentication.password)
       # Set authentication parameters for whatever you're using to access the API
     end
     

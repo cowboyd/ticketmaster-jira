@@ -19,6 +19,26 @@ module TicketMaster::Provider
         end
       end
 
+      class API
+        def self.find(*args)
+          case args.first
+          when Numeric
+            raise "what the hell, jira projects don't have indexes"
+          when :all, "all"
+            $jira.getProjectsNoSchemes().map do |proj|
+            {
+              :id => proj.key,
+              :name => proj.name,
+              :description => proj.description,
+              :system => :jira,
+              :system_data => proj
+            }
+          end
+          else
+            raise "can't find jira project #{args.first}"
+          end
+        end
+      end
     end
   end
 end

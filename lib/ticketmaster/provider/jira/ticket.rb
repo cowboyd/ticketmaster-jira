@@ -7,6 +7,8 @@ module TicketMaster::Provider
       #API = Jira::Ticket # The class to access the api's tickets
       # declare needed overloaded methods here
       
+      class API
+      end
     end
   end
 end

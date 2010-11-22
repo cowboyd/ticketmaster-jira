@@ -9,6 +9,12 @@ module TicketMaster::Provider
       #API = Jira::Comment # The class to access the api's comments
       # declare needed overloaded methods here
       
+      class API
+        def find(*args)
+          puts "ARGS: #{args.join(", ")}"
+          []
+        end
+      end
     end
   end
 end
